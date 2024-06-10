@@ -17,7 +17,7 @@ jobs:
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: ' 2.1.201' # .NET Core 2.1 SDK 是最后一个支持 .NET Core 2.0 的 SDK
+        dotnet-version: '2.0.0' # .NET Core 2.1 SDK 是最后一个支持 .NET Core 2.0 的 SDK
 
     - name: Restore dependencies
       run: dotnet restore --verbosity normal
