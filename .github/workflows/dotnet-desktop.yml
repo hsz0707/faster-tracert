@@ -2,9 +2,9 @@ name: Build and Test
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -20,10 +20,10 @@ jobs:
         dotnet-version: '2.1.818' # .NET Core 2.1 SDK 是最后一个支持 .NET Core 2.0 的 SDK
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore --verbosity normal
 
     - name: Build
-      run: dotnet build --configuration Release --runtime win10-x64 --no-restore
+      run: dotnet build --configuration Release --runtime win10-x64 --no-restore --verbosity normal
 
     - name: Test
       run: dotnet test --no-restore --verbosity normal
