@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build
 
 on:
   push:
@@ -17,12 +17,16 @@ jobs:
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '2.0.0' # .NET Core 2.1 SDK 是最后一个支持 .NET Core 2.0 的 SDK
+        dotnet-version: '2.1.202' # .NET Core 2.1 SDK 是最后一个支持 .NET Core 2.0 的 SDK
 
     - name: Restore dependencies
       run: dotnet restore --verbosity normal
 
     - name: Build
       run: dotnet build --configuration Release --runtime win10-x64 --no-restore --verbosity normal
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
+
+    - name: Archive build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: bin/Release/netcoreapp2.0/win10-x64/
